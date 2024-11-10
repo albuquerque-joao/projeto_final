@@ -21,14 +21,15 @@ export default function Pagina({ titulo, children }) {
     </Navbar.Brand>
     <Navbar.Brand href="/">Home</Navbar.Brand>
         <Nav className="me-auto">
-        <Nav.Link href="/faculdades">Cliente</Nav.Link>
-        <Nav.Link href="/cursos">Veículo</Nav.Link>
-        <Nav.Link href="/disciplinas">Serviços</Nav.Link>
-        <Nav.Link href="/professores">Agendamento</Nav.Link>
-        <Nav.Link href="/alunos">Profissional</Nav.Link>
+        <Nav.Link href="/clientes">Cliente</Nav.Link>
+        <Nav.Link href="/veiculos">Veículo</Nav.Link>
+        <Nav.Link href="/servicos">Serviços</Nav.Link>
+        <Nav.Link href="/agendamento">Agendamento</Nav.Link>
+        <Nav.Link href="/profissionais">Profissional</Nav.Link>
     </Nav>
     </Container>
     </Navbar>
+    
       {/* Barra de Titulo */}
       <div style={{ backgroundColor: '#bd0003' }} className="text-center text-white py-2">
         <h1>{titulo}</h1>
