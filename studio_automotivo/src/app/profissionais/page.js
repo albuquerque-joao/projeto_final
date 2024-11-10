@@ -35,7 +35,7 @@ export default function profissionaisPage() {
   return (
     <Pagina titulo={"Painel de profissionais"}>
       <div className='text-end mb-2'>
-        <Button href=''><FaPlusCircle /> Novo</Button>
+        <Button href='profissionais/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os profissionais */}
