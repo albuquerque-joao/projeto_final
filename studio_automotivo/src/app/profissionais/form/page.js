@@ -31,6 +31,17 @@ export default function ProfissionalFormPage(props) {
     router.push("/profissionais")
   } 
 
+  function apagar() {
+    if (profissionalEditado) {
+      const novaLista = profissionais.filter(item => item.id !== id)
+      localStorage.setItem('profissional', JSON.stringify(novaLista))
+      alert("Profissional apagado com sucesso!")
+      router.push("/profissionais")
+    } else {
+      alert("Nenhum profissional selecionado para apagar.")
+    }
+  }
+
   const listaTurno = [
     "Manhã",
     "Tarde",
@@ -198,6 +209,7 @@ export default function ProfissionalFormPage(props) {
             <Form.Group className='text-end'>
               <Button className='me-2' href='/profissionais'><FaArrowLeft /> Voltar</Button>
               <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
+              <Button variant='danger' onClick={apagar}><FaTrashRestore /> Apagar</Button>
             </Form.Group>
           </Form>
         )}
