@@ -35,7 +35,7 @@ export default function clientesPage() {
   return (
     <Pagina titulo={"Painel de Clientes"}>
       <div className='text-end mb-2'>
-        <Button href=''><FaPlusCircle /> Novo</Button>
+        <Button href='clientes/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os Clientes */}
