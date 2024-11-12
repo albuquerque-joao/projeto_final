@@ -35,7 +35,7 @@ export default function veiculosPage() {
   return (
     <Pagina titulo={"Painel de veículos"}>
       <div className='text-end mb-2'>
-        <Button href=''><FaPlusCircle /> Novo</Button>
+        <Button href='veiculos/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os veiculos */}
