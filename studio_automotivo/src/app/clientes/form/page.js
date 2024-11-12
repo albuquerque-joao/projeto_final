@@ -13,9 +13,13 @@ export default function CadastroFormPage(props) {
   const router = useRouter()
   const cadastros = JSON.parse(localStorage.getItem('cadastros')) || []
 
-  const placaVeiculo = JSON.parse(localStorage.getItem('placaVeiculo')) || []
+  const veiculos = JSON.parse(localStorage.getItem('placa')) || []
+  const veiculos2 = JSON.parse(localStorage.getItem('corVeiculo')) || []
+  const veiculos3 = JSON.parse(localStorage.getItem('marca')) || []
   const id = props.searchParams.id
+  console.log(props.searchParams.id)
   const cadastroEditado = cadastros.find(item => item.id === id)
+  console.log(cadastroEditado)
 
   function salvar(dados) {
     if (cadastroEditado) {
@@ -155,48 +159,51 @@ export default function CadastroFormPage(props) {
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Placa do Veículo:</Form.Label>
-                <Form.Select> 
+                <Form.Select
                   name='placaVeiculo'
-                  type='text'
-                  value={values.placaVeiculo}
+                  value={values.placa}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.placaVeiculo && !errors.placaVeiculo}
-                  isInvalid={touched.placaVeiculo && errors.placaVeiculo}
-
+                  isValid={touched.placa && !errors.placa}
+                  isInvalid={touched.placa && errors.placa}
+                  >
                 <option value=''>Selecione</option>
-                {placaVeiculo.map(placaVeiculo => <option value={placaVeiculo.nome}>{placaVeiculo.nome}</option>)}
-
+                {veiculos.map(veiculo => <option value={veiculo.placa}>{veiculo.placa}</option>)}
                 /</Form.Select>
-                <Form.Control.Feedback type='invalid'>{errors.placaVeiculo}</Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>{errors.placa}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Marca do Veículo:</Form.Label>
-                <Form.Control
+                <Form.Select
                   name='marcaModeloVeiculo'
-                  type='text'
-                  value={values.marcaModeloVeiculo}
+                  value={values.marca}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.marcaModeloVeiculo && !errors.marcaModeloVeiculo}
-                  isInvalid={touched.marcaModeloVeiculo && errors.marcaModeloVeiculo}
-                />
-                <Form.Control.Feedback type='invalid'>{errors.marcaModeloVeiculo}</Form.Control.Feedback>
+                  isValid={touched.marca && !errors.marca}
+                  isInvalid={touched.marca && errors.marca}
+                    >
+                  <option value=''>Selecione</option>
+                {veiculos3.map(veiculo => <option value={veiculo.marca}>{veiculo.placa}</option>)}
+                </Form.Select>
+                <Form.Control.Feedback type='invalid'>{errors.marca}</Form.Control.Feedback>
               </Form.Group>
             </Row>
 
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Cor do Veículo:</Form.Label>
-                <Form.Control
+                <Form.Select
                   name='corVeiculo'
                   value={values.corVeiculo}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.corVeiculo && !errors.corVeiculo}
                   isInvalid={touched.corVeiculo && errors.corVeiculo}
-                />
+                    >
+                <option value=''>Selecione</option>
+                {veiculos2.map(veiculo => <option value={veiculo.corVeiculo}>{veiculo.corVeiculo}</option>)}
+                </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.corVeiculo}</Form.Control.Feedback>
               </Form.Group>
 

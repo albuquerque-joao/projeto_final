@@ -4,7 +4,7 @@ import Pagina from '@/components/Pagina'
 import { Formik } from 'formik'
 import { useRouter } from 'next/navigation'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { FaArrowLeft, FaCheck } from "react-icons/fa"
+import { FaArrowLeft, FaCheck, FaTrashRestore } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
@@ -15,7 +15,9 @@ export default function ProfissionalFormPage(props) {
   const profissionais = JSON.parse(localStorage.getItem('profissionais')) || []
 
   const id = props.searchParams.id
+  console.log(props.searchParams.id)
   const profissionalEditado = profissionais.find(item => item.id == id)
+  console.log(profissionalEditado)
 
   function salvar(dados) {
     if (profissionalEditado) {
@@ -175,13 +177,14 @@ export default function ProfissionalFormPage(props) {
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Serviços Especializados:</Form.Label>
-                <Form.Select>
+                <Form.Select
                   name='servicosEspecializados'
                   value={values.servicosEspecializados}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.servicosEspecializados && !errors.servicosEspecializados}
                   isInvalid={touched.servicosEspecializados && errors.servicosEspecializados}
+                  >
                 <option value=''>Selecione</option>
                 {servicosEspecializados.map(servicosEspecializados => <option value={servicosEspecializados.nome}>{servicosEspecializados.nome}</option>)}
                 </Form.Select>
@@ -191,14 +194,14 @@ export default function ProfissionalFormPage(props) {
 
               <Form.Group as={Col}>
                 <Form.Label>Turno de Trabalho:</Form.Label>
-                <Form.Select>
+                <Form.Select
                   name='turnoTrabalho'
                   value={values.turnoTrabalho}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.turnoTrabalho && !errors.turnoTrabalho}
                   isInvalid={touched.turnoTrabalho && errors.turnoTrabalho}
-                
+                  >
                   <option value=''>Selecione</option>
                   {listaTurno.map(turno => <option value={turno}>{turno}</option>)}
                 </Form.Select>
@@ -208,7 +211,7 @@ export default function ProfissionalFormPage(props) {
 
             <Form.Group className='text-end'>
               <Button className='me-2' href='/profissionais'><FaArrowLeft /> Voltar</Button>
-              <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
+              <Button type='submit' variant='success' className='me-2'><FaCheck /> Enviar</Button>
               <Button variant='danger' onClick={apagar}><FaTrashRestore /> Apagar</Button>
             </Form.Group>
           </Form>

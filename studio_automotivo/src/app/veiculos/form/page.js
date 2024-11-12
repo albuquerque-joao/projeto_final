@@ -14,11 +14,15 @@ export default function VeiculoFormPage(props) {
   const veiculos = JSON.parse(localStorage.getItem('veiculos')) || []
 
   const id = props.searchParams.id
+  console.log(props.searchParams.id)
+
   const veiculoEditado = veiculos.find(item => item.id === id)
+  console.log(veiculoEditado)
 
   function salvar(dados) {
     if (veiculoEditado) {
       Object.assign(veiculoEditado, dados)
+
       localStorage.setItem('veiculos', JSON.stringify(veiculos))
     } else {
       dados.id = v4()
@@ -26,7 +30,7 @@ export default function VeiculoFormPage(props) {
       localStorage.setItem('veiculos', JSON.stringify(veiculos))
     }
 
-    alert("Veículo salvo com sucesso!")
+    alert("Veiculo criado com sucesso!")
     router.push("/veiculos")
   }
 
@@ -44,7 +48,7 @@ export default function VeiculoFormPage(props) {
   const listaCombustivel = [
     "Gasolina",
     "Etanol",
-    "Disel",
+    "Diesel",
     "Elétrico",
     "GNV",
   ]
@@ -269,7 +273,7 @@ export default function VeiculoFormPage(props) {
 
             <Form.Group className='text-end'>
               <Button className='me-2' href='/veiculos'><FaArrowLeft /> Voltar</Button>
-              <Button type='submit' variant='success' className='me-2'><FaCheck /> Enviar</Button>
+              <Button type='submit' variant='success' className='me-2'><FaCheck />Enviar</Button>
               <Button variant='danger' onClick={apagar}><FaTrashRestore /> Apagar</Button>
             </Form.Group>
           </Form>

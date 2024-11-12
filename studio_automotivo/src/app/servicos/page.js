@@ -35,7 +35,7 @@ export default function servicosPage() {
   return (
     <Pagina titulo={"Painel de serviços"}>
       <div className='text-end mb-2'>
-        <Button href=''><FaPlusCircle /> Novo</Button>
+        <Button href='servicos/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os servicos */}
