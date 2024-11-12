@@ -49,7 +49,7 @@ export default function clientesPage() {
             <th>Endereço</th>
             <th>Placa do Veículo</th>
             <th>Marca do Veículo</th>
-            <th>Modelo do Veículo</th>
+            <th>Cor do Veículo</th>
             <th>Data do Cadastro</th>
           </tr>
         </thead>
@@ -64,7 +64,7 @@ export default function clientesPage() {
                 <td>{cliente.enderenco}</td>
                 <td>{cliente.placaVeiculo}</td>
                 <td>{cliente.marca}</td>
-                <td>{cliente.modelo}</td>
+                <td>{cliente.cor}</td>
                 <td>{cliente.data}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
