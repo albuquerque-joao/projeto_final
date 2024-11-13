@@ -8,11 +8,9 @@ export default function clientesPage() {
 
   const [clientes, setClientes] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
+    
     const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
-    // guarda a lista no estado
     setClientes(clientesLocalStorage)
     console.log(clientesLocalStorage)
   }, [])
@@ -57,18 +55,18 @@ export default function clientesPage() {
           {clientes.map(cliente => {
             return (
               <tr>
-                <td>{cliente.nome}</td>
+                <td>{cliente.nomeCompleto}</td>
                 <td>{cliente.telefone}</td>
                 <td>{cliente.email}</td>
                 <td>{cliente.cpf}</td>
-                <td>{cliente.enderenco}</td>
-                <td>{cliente.placaVeiculo}</td>
+                <td>{cliente.endereco}</td>
+                <td>{cliente.placa}</td>
                 <td>{cliente.marca}</td>
-                <td>{cliente.cor}</td>
-                <td>{cliente.data}</td>
+                <td>{cliente.corVeiculo}</td>
+                <td>{cliente.datacliente}</td>
                 <td className='text-center'>
-                  {/* Botões das ações */}
-                  <Button className='me-2' href={`/clientes/form?id=${cliente.id}`}><FaPen /></Button>
+                  
+                  <Button  href={`/clientes/form?id=${cliente.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
 
                 </td>

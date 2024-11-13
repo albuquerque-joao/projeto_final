@@ -12,13 +12,13 @@ export default function ServicoFormPage(props) {
 
   const router = useRouter()
   const servicos = JSON.parse(localStorage.getItem('servicos')) || []
+  const profissionais = JSON.parse(localStorage.getItem('profissionais')) || []
 
   const id = props.searchParams.id
   console.log(props.searchParams.id)
   const servicoEditado = servicos.find(item => item.id === id)
   console.log(servicoEditado)
 
-  const profissionais = JSON.parse(localStorage.getItem('nomeCompleto')) || []
 
   function salvar(dados) {
     if (servicoEditado) {
@@ -221,7 +221,7 @@ export default function ServicoFormPage(props) {
                   isInvalid={touched.profissionalResponsavel && errors.profissionalResponsavel}
                   >
                 <option value=''>Selecione</option>
-                {profissionais.map(veiculo => <option value={profissionais.nomeCompleto}>{profissionais.placa}</option>)}
+                {profissionais.map(profissionais => <option value={profissionais.nomeCompleto}>{profissionais.nomeCompleto}</option>)}
                 </Form.Select>
 
                 <Form.Control.Feedback type='invalid'>{errors.profissionalResponsavel}</Form.Control.Feedback>

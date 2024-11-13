@@ -11,7 +11,6 @@ import * as Yup from 'yup'
 export default function ProfissionalFormPage(props) {
 
   const router = useRouter()
-  const servicosEspecializados = JSON.parse(localStorage.getItem('servicosEspecializados')) || []
   const profissionais = JSON.parse(localStorage.getItem('profissionais')) || []
 
   const id = props.searchParams.id
@@ -50,6 +49,17 @@ export default function ProfissionalFormPage(props) {
     "Integral",
   ]
 
+  const listaespecializacao = [
+    "Polimento",
+    "Vitrificação",
+    "Envelopamento",
+    "Estética Interna",
+    "Estética Externa",
+    "Correção de Pintura",
+    "Instalação de Insulfilm",
+    "Reparo de Rodas",
+  ]
+
   const initialValues = {
     nomeCompleto: '',
     cpf: '',
@@ -57,18 +67,18 @@ export default function ProfissionalFormPage(props) {
     email: '',
     funcao: '',
     dataAdmissao: '',
-    servicosEspecializados: '',
+    especializacao: '',
     turnoTrabalho: '',
   }
 
   const validationSchema = Yup.object().shape({
     nomeCompleto: Yup.string().required("Campo obrigatório"),
-    cpf: Yup.string().matches(/^\d{11}$/, "Deve conter 11 dígitos numéricos").required("Campo obrigatório"),
-    telefone: Yup.string().matches(/^\d{10,11}$/, "Deve conter 10 ou 11 dígitos").required("Campo obrigatório"),
+    cpf: Yup.string().required("Campo obrigatório"),
+    telefone: Yup.string().required("Campo obrigatório"),
     email: Yup.string().email("E-mail inválido").required("Campo obrigatório"),
     funcao: Yup.string().required("Campo obrigatório"),
     dataAdmissao: Yup.date().required("Campo obrigatório"),
-    servicosEspecializados: Yup.string().required("Campo obrigatório"),
+    especializacao: Yup.string().required("Campo obrigatório"),
     turnoTrabalho: Yup.string().required("Campo obrigatório"),
   })
 
@@ -176,20 +186,20 @@ export default function ProfissionalFormPage(props) {
 
             <Row className='mb-2'>
               <Form.Group as={Col}>
-                <Form.Label>Serviços Especializados:</Form.Label>
+                <Form.Label>Especialização:</Form.Label>
                 <Form.Select
-                  name='servicosEspecializados'
-                  value={values.servicosEspecializados}
+                  name='especializacao'
+                  value={values.especializacao}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.servicosEspecializados && !errors.servicosEspecializados}
-                  isInvalid={touched.servicosEspecializados && errors.servicosEspecializados}
+                  isValid={touched.especializacao && !errors.especializacao}
+                  isInvalid={touched.especializacao && errors.especializacao}
                   >
                 <option value=''>Selecione</option>
-                {servicosEspecializados.map(servicosEspecializados => <option value={servicosEspecializados.nome}>{servicosEspecializados.nome}</option>)}
+                {listaespecializacao.map(duracaoEstimada => <option value={duracaoEstimada}>{duracaoEstimada}</option>)}
                 </Form.Select>
 
-                <Form.Control.Feedback type='invalid'>{errors.servicosEspecializados}</Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>{errors.especializacao}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>

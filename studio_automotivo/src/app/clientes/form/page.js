@@ -8,43 +8,96 @@ import { FaArrowLeft, FaCheck, FaTrashRestore } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function CadastroFormPage(props) {
+export default function clienteFormPage(props) {
 
   const router = useRouter()
-  const cadastros = JSON.parse(localStorage.getItem('cadastros')) || []
+  const clientes = JSON.parse(localStorage.getItem('clientes')) || []
 
-  const veiculos = JSON.parse(localStorage.getItem('placa')) || []
-  const veiculos2 = JSON.parse(localStorage.getItem('corVeiculo')) || []
-  const veiculos3 = JSON.parse(localStorage.getItem('marca')) || []
   const id = props.searchParams.id
   console.log(props.searchParams.id)
-  const cadastroEditado = cadastros.find(item => item.id === id)
-  console.log(cadastroEditado)
+  const clienteEditado = clientes.find(item => item.id === id)
+  console.log(clienteEditado)
 
   function salvar(dados) {
-    if (cadastroEditado) {
-      Object.assign(cadastroEditado, dados)
-      localStorage.setItem('cadastros', JSON.stringify(cadastros))
+    if (clienteEditado) {
+      Object.assign(clienteEditado, dados)
+      localStorage.setItem('clientes', JSON.stringify(clientes))
     } else {
       dados.id = v4()
-      cadastros.push(dados)
-      localStorage.setItem('cadastros', JSON.stringify(cadastros))
+      clientes.push(dados)
+      localStorage.setItem('clientes', JSON.stringify(clientes))
     }
 
-    alert("Cadastro salvo com sucesso!")
-    router.push("/cadastros")
+    alert("cliente salvo com sucesso!")
+    router.push("/clientes")
   }
 
   function apagar() {
-    if (cadastroEditado) {
-      const novaLista = cadastros.filter(item => item.id !== id)
-      localStorage.setItem('cadastros', JSON.stringify(novaLista))
-      alert("Cadastro apagado com sucesso!")
-      router.push("/cadastros")
+    if (clienteEditado) {
+      const novaLista = clientes.filter(item => item.id !== id)
+      localStorage.setItem('clientes', JSON.stringify(novaLista))
+      alert("cliente apagado com sucesso!")
+      router.push("/clientes")
     } else {
-      alert("Nenhum cadastro selecionado para apagar.")
+      alert("Nenhum cliente selecionado para apagar.")
     }
   }
+
+  const listaMarca = [
+    "FIAT",
+    "CHEVROLET",
+    "VOLKSWAGEN",
+    "HYUNDAI",
+    "JEEP",
+    "JEEP",
+    "HONDA",
+    "NISSAN",
+    "PEUGEOT",
+    "CAOA CHERY",
+    "CITROËN",
+    "MITSUBISHI",
+    "FORD",
+    "BMW",
+    "MERCEDES",
+    "AUDI",
+    "KIA",
+    "VOLVO",
+    "LAND ROVER",
+    "PORSCHE",
+    "IVECO",
+    "RAM",
+    "SUZUKI",
+    "JAC",
+    "MINI",
+    "SUBARU",
+    "LEXUS",
+    "JAGUAR",
+    "BYD",
+    "TROLLER ",
+    "FERRARI",
+    "DODGE",
+    "TESLA",
+    "LAMBORGHINI",
+    "CADILLAC",
+    "MASERATI",
+    "ASTON MARTIN",
+    "CHRYSLER",
+    "BENTLEY",
+    "GWM",
+    "DONGFENG",
+    "MCLAREN",
+    "ROLLS-ROYCE",
+  ]
+
+  const listaCor = [
+    "Branco",
+    "Vermelho",
+    "Preto",
+    "Prata",
+    "Azul",
+    "Cinza",
+    "Outros",
+  ]
 
   const initialValues = {
     nomeCompleto: '',
@@ -52,9 +105,10 @@ export default function CadastroFormPage(props) {
     email: '',
     cpf: '',
     endereco: '',
-    placaVeiculo: '',
-    marcaModeloVeiculo: '',
-    dataCadastro: '',
+    placa: '',
+    marca: '',
+    corVeiculo: '',
+    datacliente: '',
   }
 
   const validationSchema = Yup.object().shape({
@@ -63,16 +117,17 @@ export default function CadastroFormPage(props) {
     email: Yup.string().email("E-mail inválido").required("Campo obrigatório"),
     cpf: Yup.string().required("Campo obrigatório"),
     endereco: Yup.string().required("Campo obrigatório"),
-    placaVeiculo: Yup.string().required("Campo obrigatório"),
-    marcaModeloVeiculo: Yup.string().required("Campo obrigatório"),
-    dataCadastro: Yup.date().required("Campo obrigatório"),
+    placa: Yup.string().required("Campo obrigatório"),
+    marca: Yup.string().required("Campo obrigatório"),
+    corVeiculo: Yup.string().required("Campo obrigatório"),
+    datacliente: Yup.date().required("Campo obrigatório"),
   })
 
   return (
-    <Pagina titulo={"Cadastro de Cliente"}>
+    <Pagina titulo={"cliente de Cliente"}>
 
       <Formik
-        initialValues={cadastroEditado || initialValues}
+        initialValues={clienteEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -157,37 +212,37 @@ export default function CadastroFormPage(props) {
             </Row>
 
             <Row className='mb-2'>
-              <Form.Group as={Col}>
-                <Form.Label>Placa do Veículo:</Form.Label>
-                <Form.Select
-                  name='placaVeiculo'
+            <Form.Group as={Col}>
+              <Form.Label>Placa do Veículo:</Form.Label>
+                <Form.Control
+                  name='placa'
+                  type='text'
+                  placeholder='XXX-1111 ou ABC1D23'
                   value={values.placa}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.placa && !errors.placa}
                   isInvalid={touched.placa && errors.placa}
-                  >
-                <option value=''>Selecione</option>
-                {veiculos.map(veiculo => <option value={veiculo.placa}>{veiculo.placa}</option>)}
-                /</Form.Select>
+                />
                 <Form.Control.Feedback type='invalid'>{errors.placa}</Form.Control.Feedback>
-              </Form.Group>
-
+                </Form.Group>
+                
               <Form.Group as={Col}>
                 <Form.Label>Marca do Veículo:</Form.Label>
                 <Form.Select
-                  name='marcaModeloVeiculo'
+                  name='marca'
+                  type='text'
                   value={values.marca}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.marca && !errors.marca}
                   isInvalid={touched.marca && errors.marca}
-                    >
+                  >
                   <option value=''>Selecione</option>
-                {veiculos3.map(veiculo => <option value={veiculo.marca}>{veiculo.placa}</option>)}
-                </Form.Select>
+                  {listaMarca.map(marca => <option value={marca}>{marca}</option>)}
+                  </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.marca}</Form.Control.Feedback>
-              </Form.Group>
+                </Form.Group>
             </Row>
 
             <Row className='mb-2'>
@@ -195,35 +250,36 @@ export default function CadastroFormPage(props) {
                 <Form.Label>Cor do Veículo:</Form.Label>
                 <Form.Select
                   name='corVeiculo'
+                  type='text'
                   value={values.corVeiculo}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.corVeiculo && !errors.corVeiculo}
                   isInvalid={touched.corVeiculo && errors.corVeiculo}
-                    >
-                <option value=''>Selecione</option>
-                {veiculos2.map(veiculo => <option value={veiculo.corVeiculo}>{veiculo.corVeiculo}</option>)}
-                </Form.Select>
+                  >
+                  <option value=''>Selecione</option>
+                  {listaCor.map(combustivel => <option value={combustivel}>{combustivel}</option>)}
+                  </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.corVeiculo}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Data do Cadastro:</Form.Label>
+                <Form.Label>Data do cliente:</Form.Label>
                 <Form.Control
-                  name='dataCadastro'
+                  name='datacliente'
                   type='date'
-                  value={values.dataCadastro}
+                  value={values.datacliente}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.dataCadastro && !errors.dataCadastro}
-                  isInvalid={touched.dataCadastro && errors.dataCadastro}
+                  isValid={touched.datacliente && !errors.datacliente}
+                  isInvalid={touched.datacliente && errors.datacliente}
                 />
-                <Form.Control.Feedback type='invalid'>{errors.dataCadastro}</Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>{errors.datacliente}</Form.Control.Feedback>
               </Form.Group>
             </Row>
 
             <Form.Group className='text-end'>
-              <Button className='me-2' href='/cadastros'><FaArrowLeft /> Voltar</Button>
+              <Button className='me-2' href='/clientes'><FaArrowLeft /> Voltar</Button>
               <Button type='submit' variant='success' className='me-2'><FaCheck /> Enviar</Button>
               <Button variant='danger' onClick={apagar}><FaTrashRestore /> Apagar</Button>
             </Form.Group>

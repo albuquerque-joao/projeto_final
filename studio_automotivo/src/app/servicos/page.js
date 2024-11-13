@@ -56,17 +56,17 @@ export default function servicosPage() {
           {servicos.map(servicos => {
             return (
               <tr>
-                <td>{servicos.tipo}</td>
-                <td>{servicos.descricao}</td>
+                <td>{servicos.nomeServico}</td>
+                <td>{servicos.descricaoServico}</td>
                 <td>{servicos.preco}</td>
-                <td>{servicos.duracao}</td>
-                <td>{servicos.materias}</td>
-                <td>{servicos.equipamentos}</td>
-                <td>{servicos.profissional}</td>
-                <td>{servicos.frequencia}</td>
+                <td>{servicos.duracaoEstimada}</td>
+                <td>{servicos.materiaisNecessarios}</td>
+                <td>{servicos.equipamentosUtilizados}</td>
+                <td>{servicos.profissionalResponsavel}</td>
+                <td>{servicos.frequenciaRecomendada}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/servicos/form?id=${servicos.id}`}><FaPen /></Button>
+                  <Button  href={`/servicos/form?id=${servicos.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(servicos)}><FaTrash /></Button>
 
                 </td>

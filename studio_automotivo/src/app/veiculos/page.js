@@ -8,11 +8,9 @@ export default function veiculosPage() {
 
   const [veiculos, setveiculos] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
+  
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
     const veiculosLocalStorage = JSON.parse(localStorage.getItem("veiculos")) || []
-    // guarda a lista no estado
     setveiculos(veiculosLocalStorage)
     console.log(veiculosLocalStorage)
   }, [])
@@ -60,13 +58,13 @@ export default function veiculosPage() {
                 <td>{veiculo.marca}</td>
                 <td>{veiculo.modelo}</td>
                 <td>{veiculo.anoFabricacao}</td>
-                <td>{veiculo.cor}</td>
-                <td>{veiculo.combustivel}</td>
-                <td>{veiculo.ultimaManutencao}</td>
-                <td>{veiculo.kmatual}</td>
+                <td>{veiculo.corVeiculo}</td>
+                <td>{veiculo.tipoCombustivel}</td>
+                <td>{veiculo.dataUltimaManutencao}</td>
+                <td>{veiculo.quilometragemAtual}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/veiculos/form?id=${veiculo.id}`}><FaPen /></Button>
+                  <Button  href={`/veiculos/form?id=${veiculo.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(veiculo)}><FaTrash /></Button>
 
                 </td>

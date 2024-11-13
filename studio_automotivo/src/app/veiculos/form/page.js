@@ -19,6 +19,8 @@ export default function VeiculoFormPage(props) {
   const veiculoEditado = veiculos.find(item => item.id === id)
   console.log(veiculoEditado)
 
+  const clientes = JSON.parse(localStorage.getItem('clientes')) || []
+
   function salvar(dados) {
     if (veiculoEditado) {
       Object.assign(veiculoEditado, dados)
@@ -48,66 +50,13 @@ export default function VeiculoFormPage(props) {
   const listaCombustivel = [
     "Gasolina",
     "Etanol",
+    "Flex",
     "Diesel",
     "Elétrico",
     "GNV",
   ]
 
-  const listaCor = [
-    "Branco",
-    "Vermelho",
-    "Preto",
-    "Prata",
-    "Azul",
-    "Cinza",
-    "Outros",
-  ]
-
-  const listaMarca = [
-    "FIAT",
-    "CHEVROLET",
-    "VOLKSWAGEN",
-    "HYUNDAI",
-    "JEEP",
-    "JEEP",
-    "HONDA",
-    "NISSAN",
-    "PEUGEOT",
-    "CAOA CHERY",
-    "CITROËN",
-    "MITSUBISHI",
-    "FORD",
-    "BMW",
-    "MERCEDES",
-    "AUDI",
-    "KIA",
-    "VOLVO",
-    "LAND ROVER",
-    "PORSCHE",
-    "IVECO",
-    "RAM",
-    "SUZUKI",
-    "JAC",
-    "MINI",
-    "SUBARU",
-    "LEXUS",
-    "JAGUAR",
-    "BYD",
-    "TROLLER ",
-    "FERRARI",
-    "DODGE",
-    "TESLA",
-    "LAMBORGHINI",
-    "CADILLAC",
-    "MASERATI",
-    "ASTON MARTIN",
-    "CHRYSLER",
-    "BENTLEY",
-    "GWM",
-    "DONGFENG",
-    "MCLAREN",
-    "ROLLS-ROYCE",
-  ]
+  
 
   const initialValues = {
     placa: '',
@@ -143,34 +92,34 @@ export default function VeiculoFormPage(props) {
           <Form onSubmit={handleSubmit}>
             <Row className='mb-2'>
               <Form.Group as={Col}>
-                <Form.Label>Placa:</Form.Label>
-                <Form.Control
+              <Form.Label>Placa do Veículo:</Form.Label>
+                <Form.Select
                   name='placa'
-                  type='text'
-                  placeholder='XXX-1111 ou ABC1D23'
                   value={values.placa}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.placa && !errors.placa}
                   isInvalid={touched.placa && errors.placa}
-                />
+                  >
+                <option value=''>Selecione</option>
+                {clientes.map(cliente => <option value={cliente.placa}>{cliente.placa}</option>)}
+                /</Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.placa}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Marca:</Form.Label>
-                <Form.Select>
+              <Form.Label>Marca do Veículo:</Form.Label>
+                <Form.Select
                   name='marca'
-                  type='text'
                   value={values.marca}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.marca && !errors.marca}
                   isInvalid={touched.marca && errors.marca}
-
+                    >
                   <option value=''>Selecione</option>
-                  {listaMarca.map(marca => <option value={marca}>{marca}</option>)}
-                  </Form.Select>
+                  {clientes.map(cliente => <option value={cliente.marca}>{cliente.marca}</option>)}
+                </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.marca}</Form.Control.Feedback>
               </Form.Group>
             </Row>
@@ -206,26 +155,25 @@ export default function VeiculoFormPage(props) {
             </Row>
 
             <Row className='mb-2'>
-              <Form.Group as={Col}>
+            <Form.Group as={Col}>
                 <Form.Label>Cor do Veículo:</Form.Label>
-                <Form.Select>
+                <Form.Select
                   name='corVeiculo'
-                  type='text'
                   value={values.corVeiculo}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   isValid={touched.corVeiculo && !errors.corVeiculo}
                   isInvalid={touched.corVeiculo && errors.corVeiculo}
-
-                  <option value=''>Selecione</option>
-                  {listaCor.map(combustivel => <option value={combustivel}>{combustivel}</option>)}
-                  </Form.Select>
+                    >
+                <option value=''>Selecione</option>
+                {clientes.map(cliente => <option value={cliente.corVeiculo}>{cliente.corVeiculo}</option>)}
+                </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.corVeiculo}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Tipo de Combustível:</Form.Label>
-                <Form.Select>
+                <Form.Select
                   name='tipoCombustivel'
                   type='text'
                   value={values.tipoCombustivel}
@@ -233,7 +181,7 @@ export default function VeiculoFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.tipoCombustivel && !errors.tipoCombustivel}
                   isInvalid={touched.tipoCombustivel && errors.tipoCombustivel}
-
+                    >
                   <option value=''>Selecione</option>
                   {listaCombustivel.map(combustivel => <option value={combustivel}>{combustivel}</option>)}
                 </Form.Select>

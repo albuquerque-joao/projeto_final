@@ -23,9 +23,9 @@ export default function Pagina({ titulo, children }) {
         <Nav className="me-auto">
         <Nav.Link href="/clientes">Cliente</Nav.Link>
         <Nav.Link href="/veiculos">Veículo</Nav.Link>
+        <Nav.Link href="/profissionais">Profissional</Nav.Link>
         <Nav.Link href="/servicos">Serviços</Nav.Link>
         <Nav.Link href="/agendamento">Agendamento</Nav.Link>
-        <Nav.Link href="/profissionais">Profissional</Nav.Link>
     </Nav>
     </Container>
     </Navbar>
