@@ -258,13 +258,13 @@ export default function clienteFormPage(props) {
                   isInvalid={touched.corVeiculo && errors.corVeiculo}
                   >
                   <option value=''>Selecione</option>
-                  {listaCor.map(combustivel => <option value={combustivel}>{combustivel}</option>)}
+                  {listaCor.map(cor => <option value={cor}>{cor}</option>)}
                   </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.corVeiculo}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Data do cliente:</Form.Label>
+                <Form.Label>Data do Cadastro:</Form.Label>
                 <Form.Control
                   name='datacliente'
                   type='date'

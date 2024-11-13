@@ -58,7 +58,6 @@ export default function ServicoFormPage(props) {
 
   const validationSchema = Yup.object().shape({
     nomeServico: Yup.string().required("Campo obrigatório"),
-    descricaoServico: Yup.string().required("Campo obrigatório"),
     preco: Yup.number().required("Campo obrigatório").positive("Deve ser um valor positivo"),
     duracaoEstimada: Yup.string().required("Campo obrigatório"),
     materiaisNecessarios: Yup.string().required("Campo obrigatório"),
@@ -66,6 +65,21 @@ export default function ServicoFormPage(props) {
     profissionalResponsavel: Yup.string().required("Campo obrigatório"),
     frequenciaRecomendada: Yup.string().required("Campo obrigatório"),
   })
+
+  const listaTipo = [
+    "Lavagem Completa",
+    "Polimento",
+    "Enceramento",
+    "Cristalização de Pintura",
+    "Vitrificação de Pintura",
+    "Higienização Interna",
+    "Hidratação de Couro",
+    "Descontaminação da Pintura",
+    "Revitalização de Faróis",
+    "Espelhamento",
+    "Aplicação de Filme Insulfilm",
+    "Odorização",
+  ]
 
   const listaFrequencia = [
     "Semanal",
@@ -101,6 +115,22 @@ export default function ServicoFormPage(props) {
     "Pincel Automo",
   ]
 
+  const listaEquipamentos = [
+    "Lavadora de Alta Pressão",
+    "Aspirador de Pó",
+    "Politriz",
+    "Lixadeira Orbital",
+    "Compressor de Ar",
+    "Extratora de Estofados",
+    "Lâmpada de Inspeção",
+    "Secador de Ar Quente",
+    "Máquina de Vapor",
+    "Aplicador de Cera",
+    "Pistola de Pulverização",
+    "Medidor de Espessura de Pintura",
+  ]
+
+
   return (
     <Pagina titulo={"Cadastro de Serviço"}>
 
@@ -116,7 +146,7 @@ export default function ServicoFormPage(props) {
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Nome do Serviço:</Form.Label>
-                <Form.Control
+                <Form.Select
                   name='nomeServico'
                   type='text'
                   value={values.nomeServico}
@@ -124,7 +154,10 @@ export default function ServicoFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.nomeServico && !errors.nomeServico}
                   isInvalid={touched.nomeServico && errors.nomeServico}
-                />
+                >
+                <option value=''>Selecione</option>
+                {listaTipo.map(nomeServico=> <option value={nomeServico}>{nomeServico}</option>)}
+                </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.nomeServico}</Form.Control.Feedback>
               </Form.Group>
 
@@ -196,7 +229,7 @@ export default function ServicoFormPage(props) {
 
               <Form.Group as={Col}>
                 <Form.Label>Equipamentos Utilizados:</Form.Label>
-                <Form.Control
+                <Form.Select
                   name='equipamentosUtilizados'
                   type='text'
                   value={values.equipamentosUtilizados}
@@ -204,7 +237,10 @@ export default function ServicoFormPage(props) {
                   onBlur={handleBlur}
                   isValid={touched.equipamentosUtilizados && !errors.equipamentosUtilizados}
                   isInvalid={touched.equipamentosUtilizados && errors.equipamentosUtilizados}
-                />
+                >
+                  <option value=''>Selecione</option>
+                  {listaEquipamentos.map(equipamentosUtilizados=> <option value={equipamentosUtilizados}>{equipamentosUtilizados}</option>)}
+                  </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.equipamentosUtilizados}</Form.Control.Feedback>
               </Form.Group>
             </Row>
