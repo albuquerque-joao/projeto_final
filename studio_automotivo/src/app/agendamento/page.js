@@ -7,7 +7,7 @@ import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 export default function agendamentosPage() {
 
   const [agendamentos, setagendamentos] = useState([])
-a
+
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
     const agendamentosLocalStorage = JSON.parse(localStorage.getItem("agendamentos")) || []

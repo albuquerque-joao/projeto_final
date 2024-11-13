@@ -10,6 +10,7 @@ export default function HomePage() {
   const servicos = JSON.parse(localStorage.getItem("servicos")) || []
   const agendamento = JSON.parse(localStorage.getItem("agendamentos")) || []
   const profissionais = JSON.parse(localStorage.getItem("profissionais")) || []
+  const historicos = JSON.parse(localStorage.getItem("historicos")) || []
 
   const lista = [
     {
@@ -36,6 +37,11 @@ export default function HomePage() {
       nome: "Profissionais",
       imagem: "https://peliculas.citeligarage.com.br/imagens/preco-de-lavagem-de-carro-especial.jpg", quantidade: profissionais.length,
       link: "profissionais"
+    },
+    {
+      nome: "Histórico do Serviço",
+      imagem: "https://viacarreira.com/wp-content/uploads/2023/03/como-fazer-um-relatorio-academico.png", quantidade: historicos.length,
+      link: "historico"
     },
   ]
 

@@ -26,6 +26,7 @@ export default function Pagina({ titulo, children }) {
         <Nav.Link href="/profissionais">Profissional</Nav.Link>
         <Nav.Link href="/servicos">Serviços</Nav.Link>
         <Nav.Link href="/agendamento">Agendamento</Nav.Link>
+        <Nav.Link href="/historico">Histórico de Serviço</Nav.Link>
     </Nav>
     </Container>
     </Navbar>
