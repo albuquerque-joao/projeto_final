@@ -35,7 +35,7 @@ export default function agendamentosPage() {
   return (
     <Pagina titulo={"Painel de agendamentos"}>
       <div className='text-end mb-2'>
-        <Button href=''><FaPlusCircle /> Novo</Button>
+        <Button href='agendamento/form'><FaPlusCircle /> Novo</Button>
       </div>
 
       {/* Tabela com os agendamentos */}
@@ -58,15 +58,15 @@ export default function agendamentosPage() {
               <tr>
                 <td>{agendamento.nomeCliente}</td>
                 <td>{agendamento.placaVeiculo}</td>
-                <td>{agendamento.servicos}</td>
-                <td>{agendamento.data}</td>
-                <td>{agendamento.horario}</td>
-                <td>{agendamento.status}</td>
-                <td>{agendamento.obs}</td>
-                <td>{agendamento.data}</td>
+                <td>{agendamento.servicoSolicitado}</td>
+                <td>{agendamento.dataAgendamento}</td>
+                <td>{agendamento.horarioAgendamento}</td>
+                <td>{agendamento.statusAgendamento}</td>
+                <td>{agendamento.observacoes}</td>
+                <td>{agendamento.dataCadastro}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/agendamentos/form?id=${agendamento.id}`}><FaPen /></Button>
+                  <Button href={`/agendamentos/form?id=${agendamento.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(agendamento)}><FaTrash /></Button>
 
                 </td>
