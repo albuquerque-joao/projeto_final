@@ -7,8 +7,7 @@ import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 export default function agendamentosPage() {
 
   const [agendamentos, setagendamentos] = useState([])
-
-  // Faz alguma coisa quando o usuário acessa a tela
+a
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
     const agendamentosLocalStorage = JSON.parse(localStorage.getItem("agendamentos")) || []
@@ -37,8 +36,7 @@ export default function agendamentosPage() {
       <div className='text-end mb-2'>
         <Button href='agendamento/form'><FaPlusCircle /> Novo</Button>
       </div>
-
-      {/* Tabela com os agendamentos */}
+ 
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -65,7 +63,7 @@ export default function agendamentosPage() {
                 <td>{agendamento.observacoes}</td>
                 <td>{agendamento.dataCadastro}</td>
                 <td className='text-center'>
-                  {/* Botões das ações */}
+
                   <Button href={`/agendamentos/form?id=${agendamento.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(agendamento)}><FaTrash /></Button>
 

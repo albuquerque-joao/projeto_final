@@ -8,13 +8,13 @@ export default function HomePage() {
   const clientes = JSON.parse(localStorage.getItem("clientes")) || []
   const veiculos = JSON.parse(localStorage.getItem("veiculos")) || []
   const servicos = JSON.parse(localStorage.getItem("servicos")) || []
-  const agendamento = JSON.parse(localStorage.getItem("agendamento")) || []
+  const agendamento = JSON.parse(localStorage.getItem("agendamentos")) || []
   const profissionais = JSON.parse(localStorage.getItem("profissionais")) || []
 
   const lista = [
     {
       nome: "Clientes",
-      imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzpAVVx-vR_oFfpgcroouIx-aT42FMktTSzA&s", quantidade: clientes.length,
+      imagem: "https://doutorie.com.br/blog/wp-content/uploads/2023/04/feliz-reparador-de-automoveis-se-comunicando-com-o-jovem-casal-em-uma-oficina.jpg", quantidade: clientes.length,
       link: "/clientes"
     },
     {
@@ -29,11 +29,11 @@ export default function HomePage() {
     },
     {
       nome: "Agendamentos",
-      imagem: "https://5vfpsa.tjba.jus.br/5vfpsa/wp-content/uploads/2022/05/agendamento-01.png", quantidade: agendamento.length,
+      imagem: "https://prodegesp.paginas.ufsc.br/files/2021/12/agendamento.png", quantidade: agendamento.length,
       link: "/agendamento"
     },
     {
-      nome: "profissionais",
+      nome: "Profissionais",
       imagem: "https://peliculas.citeligarage.com.br/imagens/preco-de-lavagem-de-carro-especial.jpg", quantidade: profissionais.length,
       link: "profissionais"
     },
@@ -42,23 +42,24 @@ export default function HomePage() {
   return (
     <Pagina titulo={"Studio Automotivo"}>
 
-    <Row md={4}>
-      {lista.map(item => (
-          <Col className='py-2'>
-            <Card style={{height: '100%'}}>
-              <Card.Img src={item.imagem} style={{ height: '100%' }} />
-              <Card.Body>
-                <Card.Title>{item.nome}</Card.Title>
-                Cadastrados: {item.quantidade}
-              </Card.Body>
-              <Card.Footer className='text-end'>
-                <Button href={item.link}>Ver Lista</Button>
-              </Card.Footer>
-            </Card>
-          </Col>
-        ))}
-    </Row>
+<Row md={2}>
+  {lista.map(item => (
+    <Col className='py-2'>
+      <Card style={{ height: '100%' }}>
+        <Card.Img src={item.imagem} style={{ height: '250px', objectFit: 'cover' }} />
+        <Card.Body>
+          <Card.Title>{item.nome}</Card.Title>
+          Cadastrados: {item.quantidade}
+        </Card.Body>
+        <Card.Footer className='text-end'>
+          <Button href={item.link}>Ver Lista</Button>
+        </Card.Footer>
+      </Card>
+    </Col>
+  ))}
+</Row>
+
 
     </Pagina>
   )
-} 
+}
