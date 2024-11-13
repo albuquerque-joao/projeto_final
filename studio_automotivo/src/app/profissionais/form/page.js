@@ -73,7 +73,7 @@ export default function ProfissionalFormPage(props) {
 
   const validationSchema = Yup.object().shape({
     nomeCompleto: Yup.string().required("Campo obrigatório"),
-    cpf: Yup.string().required("Campo obrigatório"),
+    cpf: Yup.string().matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Formato de CPF inválido").required("Campo obrigatório"),
     telefone: Yup.string().required("Campo obrigatório"),
     email: Yup.string().email("E-mail inválido").required("Campo obrigatório"),
     funcao: Yup.string().required("Campo obrigatório"),

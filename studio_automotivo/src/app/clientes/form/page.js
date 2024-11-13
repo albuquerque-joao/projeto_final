@@ -115,7 +115,7 @@ export default function clienteFormPage(props) {
     nomeCompleto: Yup.string().required("Campo obrigatório"),
     telefone: Yup.string().required("Campo obrigatório"),
     email: Yup.string().email("E-mail inválido").required("Campo obrigatório"),
-    cpf: Yup.string().required("Campo obrigatório"),
+    cpf: Yup.string().matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, "Formato de CPF inválido").required("Campo obrigatório"),
     endereco: Yup.string().required("Campo obrigatório"),
     placa: Yup.string().required("Campo obrigatório"),
     marca: Yup.string().required("Campo obrigatório"),
